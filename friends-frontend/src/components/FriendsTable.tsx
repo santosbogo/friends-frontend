@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import apiClient from "../api/apiClient.ts";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Tooltip } from '@mui/material';
 
 interface Address {
@@ -20,7 +20,7 @@ const FriendsTable: React.FC = () => {
     const [friends, setFriends] = useState<Friend[]>([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/friends')
+        apiClient.get('/friends')
             .then(response => {
                 setFriends(response.data);
             })
